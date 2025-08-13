@@ -1,5 +1,7 @@
 # RocketChat V2ray Hunter
 
+<img src="./docs/rocket.png">
+
 A Python bot that automatically fetches V2Ray, VLESS, and Trojan configurations from a remote repository, tests their connectivity, measures latency, and sends working configurations to a Rocket.Chat channel via webhook.
 
 ## Features
