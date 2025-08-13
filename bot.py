@@ -1,11 +1,13 @@
 import requests
 import subprocess
+import schedule
 import time
 import json
 import tempfile
 import os
 import socket
 import base64
+import time
 from urllib.parse import urlparse
 from config import *
 
@@ -13,8 +15,10 @@ from config import *
 # Rocket.Chat webhook
 # -------------------------
 def send_to_rocketchat_webhook(message):
+    print(f"sending new config to RocketChat server.")
     data = {"text": message}
     try:
+        time.sleep(1)
         requests.post(ROCKET_WEBHOOK, json=data, timeout=5)
     except Exception as e:
         print("Failed to send message:", e)
@@ -100,10 +104,11 @@ def format_message(config, ping_info):
     ip = ping_info.get("ip", "N/A")
 
     message = (
-        f"✅ Working V2Ray Config!\n"
-        f"Ping: {ping} ms\n"
-        f"IP: {ip}\n"
-        f"Config:\n```\n{config_str}\n```"
+        f"Auto Config Bot {time.time()}\n"
+        f"✅ Working V2Ray Config found!\n"
+        f"🌐Ping: {ping} ms\n"
+        f"🌐IP: {ip}\n"
+        f"🚧 Config:\n```\n{config_str}\n```"
     )
     return message
 
@@ -146,5 +151,13 @@ def main():
         print(f"Sleeping {FETCH_INTERVAL/60} minutes...")
         time.sleep(FETCH_INTERVAL)
 
-if __name__ == "__main__":
-    main()
+
+main()
+schedule.every(3).hours.do(main)
+
+while True:
+    print(f"{time.time()}")
+    schedule.run_pending()
+    time.sleep(1)
+
+
