@@ -15,7 +15,7 @@ from config import *
 # Rocket.Chat webhook
 # -------------------------
 def send_to_rocketchat_webhook(message):
-    print(f"sending new config to RocketChat server.")
+    print(f"Sending a message to rocketChat.")
     data = {"text": message}
     try:
         time.sleep(1)
@@ -156,7 +156,7 @@ main()
 schedule.every(3).hours.do(main)
 
 while True:
-    print(f"{time.time()}")
+    print(f"starting {time.time()}")
     schedule.run_pending()
     time.sleep(1)
 

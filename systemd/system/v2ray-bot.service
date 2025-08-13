@@ -1,0 +1,13 @@
+[Unit]
+Description=RocketChat V2Ray Hunter
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /var/rocketv2rayHunter/bot.py
+WorkingDirectory=/var/rocketv2rayHunter
+User=root
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
