@@ -153,7 +153,7 @@ def main():
 
 
 main()
-schedule.every(3).hours.do(main)
+schedule.every(FETCH_INTERVAL).hours.do(main)
 
 while True:
     print(f"starting {time.time()}")
